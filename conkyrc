@@ -1,0 +1,57 @@
+conky.config = {
+	alignment = 'top_right',
+	background = true,
+	color2 = '00D4D4',
+  color3 = '808080',
+  color4 = 'FF9500',
+  color5 = '09FF00',
+  color6 = 'C5CFC4',
+  color7 = 'ffa200',
+  color8 = 'ffc800',
+  color9 = '9900ff',
+	cpu_avg_samples = 2,
+	default_color = '00D46A',
+	double_buffer = true,
+	font = 'DaddyTimeMono Nerd Font:size=12',
+  font2 = 'CaskaydiaCove Nerd Font:size=34',
+	draw_shades = false,
+	gap_x = 27,
+	gap_y = 32,
+	minimum_width = 20,
+  minimum_height = 700,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 1.0,
+	use_xft = true,
+}
+conky.text = [[
+${voffset 9}$color2${font2}${time %A}$font\
+${voffset -7}$alignr$color${font CaskaydiaCove Nerd Font:size=38}${time %e}$font
+$color${voffset -30}$color${font CaskaydiaCove Nerd Font:size=18}${time %b}$font\
+${voffset -3}$color${font CaskaydiaCove Nerd Font:size=20}${time %Y}$font$color2$hr
+#
+${voffset 21}${goto 40}${color}CPU${font CaskaydiaCove Nerd Font:size=12}$alignr$cpu%
+${voffset 6}${goto 40}$font$color2${top name 1}$alignr$color7${top cpu 1}%
+${goto 40}$color2${top name 2}$alignr$color7${top cpu 2}%
+${goto 40}$color2${top name 3}$alignr$color7${top cpu 3}%
+${goto 40}$color2${top name 4}$alignr$color7${top cpu 4}%
+# ${goto 40}$color2${top name 5}$alignr$color${top cpu 5}%
+#
+${voffset 10}${goto 40}${color}RAM${font CaskaydiaCove Nerd Font:size=12}$alignr$mem$font
+${goto 40}${voffset 5}$color2${top_mem name 1}$alignr$color8${top_mem mem_res 1}
+${goto 40}$color2${top_mem name 2}$alignr$color8${top_mem mem_res 2}
+${goto 40}$color2${top_mem name 3}$alignr$color8${top_mem mem_res 3}
+${goto 40}$color2${top_mem name 4}$alignr$color8${top_mem mem_res 4}
+# ${goto 40}$color2${top_mem name 5}$alignr$color${top_mem mem_res 5}
+#
+${voffset 10}${goto 40}${color}${font CaskaydiaCove Nerd Font:size=18}Network: ${font CaskaydiaCove Nerd Font:size=15}${color grey}Up: ${color blue}${upspeed wlp2s0} - ${color grey}Down: ${color purple}${downspeed wlp2s0}
+${voffset 10}${goto 40}${color grey}${font CaskaydiaCove Nerd Font:bold:20}File Systems: $color${fs_used /}/${fs_size /} ${fs_bar 6/}
+${voffset 10}${goto 40}${color6}Swap${font CaskaydiaCove Nerd Font:size=12}$alignr${swap}/ ${swapfree}
+${voffset 15}${font DaddyTimeMono Nerd Font:size=27}${color2}$alignr${execi 10000 awk -F= '/TION/ {print $2}' /etc/lsb-release |sed 's/"//g'} \
+${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
+${voffset 10}${color3}${font CaskaydiaCove Nerd Font:size=25}${alignr}${execi 1200 whoami}@${nodename}
+${alignr}${color2}${font CaskaydiaCove Nerd Font:size=15}uptime: $color9${uptime_short}
+${voffset 5}${color2}${font CaskaydiaCove Nerd Font:size=15}${alignr}kernel: ${color}${kernel}
+]]
